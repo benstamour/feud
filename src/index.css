@@ -1,0 +1,647 @@
+@import url('https://fonts.googleapis.com/css?family=Anybody');
+@import url('https://fonts.googleapis.com/css?family=Milonga');
+@import url('https://fonts.googleapis.com/css?family=Goblin+One');
+@import url('https://fonts.googleapis.com/css?family=Cherry+Cream+Soda');
+@import url('https://fonts.googleapis.com/css?family=Risque');
+@import url('https://fonts.googleapis.com/css?family=Galindo');
+@import url('https://fonts.googleapis.com/css?family=Trade+Winds');
+@import url('https://fonts.googleapis.com/css?family=Rowdies');
+
+body
+{
+	background-color: #422e4d;
+}
+
+p
+{
+	font-family: "Anybody";
+}
+
+.title
+{
+	font-family: "Goblin One";
+	font-size: 60px;
+	text-align: center;
+	color: #fff585;
+	margin-top: 20px;
+}
+
+.inline
+{
+	display: inline;
+}
+
+.center
+{
+	text-align: center;
+}
+
+/* box that displays category */
+.question-box
+{
+	height: 80px;
+	width: 1164px;
+	/*background-color: #8bf9ff;*/
+	background-color: #d9bae8;
+	border-color: black;
+	display: inline-block;
+	margin-top: 10px;
+	vertical-align: top;
+	margin-left: 5px;
+	margin-right: 5px;
+}
+.question-box p
+{
+	font-size: 48px;
+	text-align: center;
+	vertical-align: middle;
+	font-family: Anybody;
+	color: black;
+}
+
+/* displays current score */
+.score-box
+{
+	height: 80px;
+	width: 200px;
+	/*background-color: #8bf9ff;*/
+	background-color: transparent;
+	display: inline-block;
+	margin-top: 10px;
+	vertical-align: top;
+	margin-left: 5px;
+	margin-right: 5px;
+}
+.score-box p
+{
+	font-size: 48px;
+	text-align: center;
+	vertical-align: middle;
+	font-family: Rowdies;
+	color: #fff585;
+}
+
+/* displays answer */
+.square
+{
+	height: 80px;
+	width: 500px;
+	/*background-color: #8bf9ff;*/
+	background-color: #d9bae8;
+	border-color: black;
+	display: inline-block;
+	margin-top: 10px;
+	margin-left: 5px;
+	margin-right: -3px;
+	vertical-align: top;
+}
+.square p
+{
+	font-size: 48px;
+	text-align: center;
+	vertical-align: middle;
+	font-family: Anybody;
+	color: black;
+}
+
+/* displays point values for each answer */
+.point-box
+{
+	height: 80px;
+	width: 80px;
+	/*background-color: #8bf9ff;*/
+	background-color: #d9bae8;
+	border-color: black;
+	display: inline-block;
+	margin-top: 10px;
+	margin-right: 5px;
+	vertical-align: top;
+}
+.point-box p
+{
+	font-size: 48px;
+	text-align: center;
+	vertical-align: middle;
+	font-family: Anybody;
+	color: black;
+}
+
+/* format unanswered answers differently once player receives 5 strikes */
+.unanswered
+{
+	background-color: #7b4e91;
+}
+.unanswered p
+{
+	color: white;
+}
+
+/* answer grid */
+.answers
+{
+	text-align: center;
+}
+/* display answers in two columns on larger screens */
+.ans-sm
+{
+	display: none;
+}
+
+/* numbered rectangles covering answers */
+.cover
+{
+	height: 75px;
+	width: 572px;
+	/*background-color: #8bf9ff;*/
+	background-color: #5b3b6b;
+	/*border-color: black;*/
+	display: inline-block;
+	margin-top: 12.5px;
+	margin-left: 7.5px;
+	vertical-align: top;
+	z-index: 10;
+	position: absolute;
+}
+.cover p
+{
+	font-size: 48px;
+	text-align: center;
+	vertical-align: middle;
+	font-family: Anybody;
+	color: white;
+}
+
+/* text input field and button */
+.questionInput
+{
+	width: 600px;
+	display: inline-block;
+}
+.submit-button
+{
+	margin-bottom: 5px;
+	margin-left: 5px;
+	display: inline-block;
+	font-family: Anybody;
+	padding-bottom: 2px;
+	height: 38px;
+	background-color: #7b4e91;
+}
+.submit-button:hover, .submit-button:active
+{
+	background-color: #d9bae8 !important;
+	color: black !important;
+}
+.input-area
+{
+	text-align: center;
+}
+
+/* when player guesses correctly, the cover will do a sliding animation */
+.slide-cover {
+	animation: 2s slide;
+	animation-fill-mode: forwards;
+	/*animation-delay: 2s;*/
+}
+.slide-cover p
+{
+	animation: 2s slide-text;
+	animation-fill-mode: forwards;
+	/*animation-delay: 2s;*/
+}
+
+/* keyframes for sliding cover animation */
+@keyframes slide {
+	/*0%
+	{
+		display: inline-block;
+		opacity: 1;
+	}
+	50%
+	{
+		opacity: 0;
+	}
+	100% {
+		display: none;
+		opacity: 0;
+	}*/
+	0%
+	{
+		-webkit-transform: scale3d(1, 1, 1);
+		transform: scale3d(1, 1, 1);
+		-webkit-transform: translateX(0%);
+		transform: translateX(0%);
+		background-color: #fff585;
+	}
+	100%
+	{
+		transform: translate(50%) scale(0,1);
+		background-color: #fff585;
+	}
+}
+@keyframes slide-text {
+	0%
+	{
+		visibility: hidden;
+	}
+	100%
+	{
+		visibility: hidden;
+	}
+}
+
+/* strikes will animate when player guesses incorrectly */
+.strikes {
+	z-index: -1;
+	text-align: center;
+	position: fixed;
+	width: 100%;
+	height: 100vh;
+	visibility: hidden;
+}
+.s1
+{
+	animation: 3s strike-anim-1;
+}
+.s2
+{
+	animation: 3s strike-anim-2;
+}
+.s3
+{
+	animation: 3s strike-anim-3;
+}
+.s4
+{
+	animation: 3s strike-anim-4;
+}
+.s5
+{
+	animation: 3s strike-anim-5;
+}
+.strikes p
+{
+	vertical-align: top;
+	font-size: 20vw;
+	color: red;
+	font-family: "Trade Winds";
+}
+
+/* keyframes for strike animations */
+@keyframes strike-anim-1 {
+	0%
+	{
+		-webkit-transform: scale3d(0, 0, 1);
+		transform: scale3d(0, 0, 1);
+		z-index: 20;
+		visibility: visible;
+	}
+	30%
+	{
+		-webkit-transform: scale3d(1, 1, 1);
+		transform: scale3d(1, 1, 1);
+	}
+	90%
+	{
+		-webkit-transform: scale3d(1, 1, 1);
+		transform: scale3d(1, 1, 1);
+		opacity: 1;
+		z-index: 20;
+		visibility: visible;
+	}
+	100%
+	{
+		opacity: 0;
+		z-index: -1;
+		visibility: hidden;
+	}
+}
+@keyframes strike-anim-2 {
+	0%
+	{
+		-webkit-transform: scale3d(0, 0, 1);
+		transform: scale3d(0, 0, 1);
+		z-index: 20;
+		visibility: visible;
+	}
+	30%
+	{
+		-webkit-transform: scale3d(1, 1, 1);
+		transform: scale3d(1, 1, 1);
+	}
+	90%
+	{
+		-webkit-transform: scale3d(1, 1, 1);
+		transform: scale3d(1, 1, 1);
+		opacity: 1;
+		z-index: 20;
+		visibility: visible;
+	}
+	100%
+	{
+		opacity: 0;
+		z-index: -1;
+		visibility: hidden;
+	}
+}
+@keyframes strike-anim-3 {
+	0%
+	{
+		-webkit-transform: scale3d(0, 0, 1);
+		transform: scale3d(0, 0, 1);
+		z-index: 20;
+		visibility: visible;
+	}
+	30%
+	{
+		-webkit-transform: scale3d(1, 1, 1);
+		transform: scale3d(1, 1, 1);
+	}
+	90%
+	{
+		-webkit-transform: scale3d(1, 1, 1);
+		transform: scale3d(1, 1, 1);
+		opacity: 1;
+		z-index: 20;
+		visibility: visible;
+	}
+	100%
+	{
+		opacity: 0;
+		z-index: -1;
+		visibility: hidden;
+	}
+}
+@keyframes strike-anim-4 {
+	0%
+	{
+		-webkit-transform: scale3d(0, 0, 1);
+		transform: scale3d(0, 0, 1);
+		z-index: 20;
+		visibility: visible;
+	}
+	30%
+	{
+		-webkit-transform: scale3d(1, 1, 1);
+		transform: scale3d(1, 1, 1);
+	}
+	90%
+	{
+		-webkit-transform: scale3d(1, 1, 1);
+		transform: scale3d(1, 1, 1);
+		opacity: 1;
+		z-index: 20;
+		visibility: visible;
+	}
+	100%
+	{
+		opacity: 0;
+		z-index: -1;
+		visibility: hidden;
+	}
+}
+@keyframes strike-anim-5 {
+	0%
+	{
+		-webkit-transform: scale3d(0, 0, 1);
+		transform: scale3d(0, 0, 1);
+		z-index: 20;
+		visibility: visible;
+	}
+	30%
+	{
+		-webkit-transform: scale3d(1, 1, 1);
+		transform: scale3d(1, 1, 1);
+	}
+	90%
+	{
+		-webkit-transform: scale3d(1, 1, 1);
+		transform: scale3d(1, 1, 1);
+		opacity: 1;
+		z-index: 20;
+		visibility: visible;
+	}
+	100%
+	{
+		opacity: 0;
+		z-index: -1;
+		visibility: hidden;
+	}
+}
+
+
+/* responsive to screen size */
+@media (max-width: 1200px)
+{
+	.title
+	{
+		font-size: 48px;
+		margin-bottom: -10px;
+	}
+	.question-box
+	{
+		height: 48px;
+		width: 700px;
+	}
+	.question-box p
+	{
+		font-size: 28px;
+	}
+	.score-box
+	{
+		height: 48px;
+		width: 200px;
+	}
+	.score-box p
+	{
+		font-size: 28px;
+	}
+	.square
+	{
+		height: 48px;
+		width: 300px;
+	}
+	.square p
+	{
+		font-size: 28px;
+	}
+	.point-box
+	{
+		height: 48px;
+		width: 48px;
+	}
+	.point-box p
+	{
+		font-size: 28px;
+	}
+	.cover
+	{
+		height: 43.5px;
+		width: 341px;
+	}
+	.cover p
+	{
+		font-size: 28px;
+	}
+	.questionInput
+	{
+		width: 360px;
+		display: inline-block;
+	}
+}
+
+@media (max-width: 750px)
+{
+	.title
+	{
+		font-size: 32px;
+		margin-bottom: -10px;
+	}
+	.question-box
+	{
+		height: 32px;
+		width: 460px;
+	}
+	.question-box p
+	{
+		font-size: 19px;
+	}
+	.score-box
+	{
+		height: 32px;
+		width: 200px;
+	}
+	.score-box p
+	{
+		font-size: 19px;
+	}
+	.square
+	{
+		height: 32px;
+		width: 200px;
+		margin-left: 2px;
+		margin-top: 2px;
+	}
+	.square p
+	{
+		font-size: 19px;
+	}
+	.point-box
+	{
+		height: 32px;
+		width: 32px;
+		margin-right: 2px;
+		margin-top: 2px;
+	}
+	.point-box p
+	{
+		font-size: 19px;
+	}
+	.cover
+	{
+		height: 27px;
+		width: 225px;
+		margin-left: 4px;
+		margin-top: 4.5px;
+	}
+	.cover p
+	{
+		font-size: 19px;
+	}
+	.questionInput
+	{
+		width: 240px;
+		height: 20px;
+		display: inline-block;
+	}
+	.submit-button
+	{
+		height: 20px;
+		font-size: 12px;
+		padding-top: 1.5px;
+	}
+}
+
+@media (max-width: 480px)
+{
+	/* display answers in one column on smaller screens */
+	.ans-sm
+	{
+		display: block;
+	}
+	.ans-lg
+	{
+		display: none;
+	}
+	.title
+	{
+		font-size: 32px;
+		margin-bottom: -10px;
+	}
+	.question-box
+	{
+		height: 50px;
+		width: 95vw;
+	}
+	.question-box p
+	{
+		font-size: 14px;
+		margin-left: 2px;
+		margin-right: 2px;
+	}
+	.score-box
+	{
+		height: 25px;
+		width: 50px;
+	}
+	.score-box p
+	{
+		font-size: 14px;
+	}
+	.square
+	{
+		height: 25px;
+		width: 78vw;
+		margin-left: 2px;
+		margin-top: 2px;
+	}
+	.square p
+	{
+		font-size: 14px;
+	}
+	.point-box
+	{
+		height: 25px;
+		width: 13vw;
+		margin-right: 2px;
+		margin-top: 2px;
+	}
+	.point-box p
+	{
+		font-size: 14px;
+	}
+	.cover
+	{
+		height: 21px;
+		width: 89vw;
+		margin-left: 4px;
+		margin-top: 4px;
+	}
+	.cover p
+	{
+		font-size: 14px;
+	}
+	.questionInput
+	{
+		width: 100px;
+		height: 20px;
+		display: inline-block;
+	}
+	.submit-button
+	{
+		height: 21px;
+		font-size: 12px;
+		padding-bottom: 0px;
+		margin-bottom: 3px;
+	}
+}
