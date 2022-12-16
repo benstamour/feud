@@ -234,7 +234,7 @@ class App extends React.Component
 					correct = true;
 					break;
 				}
-				else if(ans.includes(accepted) && !answered.includes(i+1))
+				else if(ans.includes(current) && !answered.includes(i+1))
 				{
 					answered.push(i+1);
 					this.setState({score: this.state.score + parseInt(this.state.pointVals[i])});
